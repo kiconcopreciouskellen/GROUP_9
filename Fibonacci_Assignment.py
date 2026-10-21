@@ -145,3 +145,27 @@ def plot_results(results_A, results_B):
     plt.tight_layout()
     plt.savefig("fibonacci_calls_plot.png")
     print("\nPlot successfully saved to 'fibonacci_calls_plot.png'.\n")
+
+
+# MUDUWA ANGEL PEACE: Part 3; Mathematical Bounds and Infeasibility Calculations
+
+def estimate_algorithm_A(results_A):
+    print("\n=== PART 3: Estimation for Algorithm A at n = 1000 ===")
+    
+    # Golden Ratio phi = (1 + sqrt(5)) / 2
+    phi = (1 + 5**0.5) / 2
+    
+    # Approximation formula: Calls(n) = 2 * F(n+1) - 1
+    estimated_calls = (2 / (5**0.5)) * (phi**1001)
+    
+    # Calculate average time per call from largest measured n (n = 35)
+    last_n, last_calls, last_time = results_A[-1]
+    time_per_call = last_time / last_calls
+    
+    total_seconds = estimated_calls * time_per_call
+    total_years = total_seconds / (3600 * 24 * 365)
+    
+    print(f"Estimated Calls for n = 1000: {estimated_calls:.2e}")
+    print(f"Estimated Time for n = 1000 : {total_seconds:.2e} seconds (~{total_years:.2e} years)")
+    print("Conclusion: Completely infeasible to compute with Algorithm A")
+
