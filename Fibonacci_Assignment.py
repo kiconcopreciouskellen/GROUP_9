@@ -4,8 +4,8 @@ import math
 from importlib import import_module
 
 # Global counters and tables
-calls_A = 0
-calls_B = 0
+counter_A = 0
+counter_B = 0
 fibtable = {}
 
 # Check for matplotlib
@@ -19,8 +19,8 @@ except ImportError:
 
 def fib_A(n):
     """Algorithm A: Plain Recursion"""
-    global calls_A
-    calls_A += 1
+    global counter_A
+    counter_A += 1
 
     if n == 0 or n == 1:
         return n
@@ -29,8 +29,8 @@ def fib_A(n):
 
 def fib_B(n):
     """Algorithm B: Recursion with Memoization"""
-    global calls_B
-    calls_B += 1
+    global counter_B
+    counter_B += 1
 
     if n in fibtable:
         return fibtable[n]
@@ -46,14 +46,14 @@ def fib_B(n):
 
 def verify_correctness():
     """Verifies that fib_A and fib_B return identical results for n = 0 to 20"""
-    global calls_A, calls_B
+    global counter_A, counter_B
     print(" PART 1: Verification (n = 0 to 20) ")
     all_matched = True
 
     for n in range(21):
         fibtable.clear()
-        calls_A = 0
-        calls_B = 0
+        counter_A = 0
+        counter_B = 0
 
         val_A = fib_A(n)
         val_B = fib_B(n)
